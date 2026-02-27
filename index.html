@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DesignDesk — The All-in-One Studio Management Platform for UK Interior Designers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+            <path d="M8 12h16M8 16h12M8 20h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="24" cy="20" r="4" fill="white" fill-opacity="0.3"/>
+            <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+          </svg>
+        </div>
+        <span class="logo-text">DesignDesk</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#comparison">Compare</a>
+        <a href="#demo">Demo</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#demo" class="btn btn-ghost">Request Demo</a>
+        <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+        <button class="mobile-menu" id="mobile-menu" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Built for UK Interior Designers
+        </div>
+        <h1 class="hero-title">
+          Stop juggling <span class="gradient-text">five tools</span> to run your design studio
+        </h1>
+        <p class="hero-subtitle">
+          DesignDesk combines procurement, scheduling, invoicing, mood boards, and client management in one beautiful platform — built specifically for the way UK designers actually work.
+        </p>
+        <div class="hero-cta">
+          <a href="#waitlist" class="btn btn-primary btn-lg">
+            Join the Waitlist
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#demo" class="btn btn-outline btn-lg">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polygon points="8,5 16,10 8,15" fill="currentColor"/></svg>
+            Watch Demo
+          </a>
+        </div>
+        <div class="hero-social-proof">
+          <div class="avatar-stack">
+            <div class="avatar" style="background: #e0e7ff;">SM</div>
+            <div class="avatar" style="background: #fce7f3;">KD</div>
+            <div class="avatar" style="background: #d1fae5;">JR</div>
+            <div class="avatar" style="background: #fef3c7;">AL</div>
+            <div class="avatar" style="background: #ede9fe;">TC</div>
+          </div>
+          <p><strong>230+</strong> UK designers on the waitlist</p>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="app-preview">
+          <div class="app-preview-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="app-preview-title">DesignDesk — Kensington Townhouse Project</span>
+          </div>
+          <div class="app-preview-body" id="app-dashboard">
+            <!-- Interactive dashboard mockup -->
+            <div class="dash-sidebar">
+              <div class="dash-nav-item active"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" fill="currentColor"/><rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor" opacity=".5"/><rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor" opacity=".5"/><rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" opacity=".3"/></svg> Dashboard</div>
+              <div class="dash-nav-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M2 6h12" stroke="currentColor" stroke-width="1.5"/></svg> Projects</div>
+              <div class="dash-nav-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8h8M4 5h5M4 11h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Procurement</div>
+              <div class="dash-nav-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M2 6h12M6 2v12" stroke="currentColor" stroke-width="1.5"/></svg> Schedule</div>
+              <div class="dash-nav-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12l4-4 3 3 5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Financials</div>
+              <div class="dash-nav-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="6" r="2" fill="currentColor" opacity=".5"/><rect x="8" y="5" width="5" height="1.5" rx=".75" fill="currentColor" opacity=".4"/><rect x="8" y="8" width="3" height="1.5" rx=".75" fill="currentColor" opacity=".3"/></svg> Mood Boards</div>
+              <div class="dash-nav-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 14c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="currentColor" stroke-width="1.5"/></svg> Clients</div>
+            </div>
+            <div class="dash-main">
+              <div class="dash-header">
+                <div>
+                  <h3 class="dash-title">Kensington Townhouse</h3>
+                  <span class="dash-subtitle">Client: Mrs. Richardson · Phase 2 of 4</span>
+                </div>
+                <div class="dash-header-actions">
+                  <span class="status-badge in-progress">In Progress</span>
+                  <span class="dash-profit">Margin: <strong>32%</strong></span>
+                </div>
+              </div>
+              <div class="dash-stats">
+                <div class="stat-card">
+                  <span class="stat-label">Budget</span>
+                  <span class="stat-value">£142,500</span>
+                  <span class="stat-change positive">+2.3% margin</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-label">Orders</span>
+                  <span class="stat-value">34 / 48</span>
+                  <span class="stat-change">12 pending delivery</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-label">Schedule</span>
+                  <span class="stat-value">Week 6 / 14</span>
+                  <span class="stat-change positive">On track</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-label">Invoiced</span>
+                  <span class="stat-value">£68,200</span>
+                  <span class="stat-change">£12,400 outstanding</span>
+                </div>
+              </div>
+              <div class="dash-grid">
+                <div class="dash-card">
+                  <div class="dash-card-header">
+                    <span>Recent Orders</span>
+                    <a href="#" class="dash-card-link">View all →</a>
+                  </div>
+                  <div class="order-row">
+                    <span class="order-supplier">John Lewis Trade</span>
+                    <span class="order-item">Velvet Curtains x4</span>
+                    <span class="order-status delivered">Delivered</span>
+                  </div>
+                  <div class="order-row">
+                    <span class="order-supplier">Designer's Guild</span>
+                    <span class="order-item">Fabric Samples</span>
+                    <span class="order-status shipped">Shipped</span>
+                  </div>
+                  <div class="order-row">
+                    <span class="order-supplier">Farrow & Ball</span>
+                    <span class="order-item">Estate Emulsion x12</span>
+                    <span class="order-status pending">Processing</span>
+                  </div>
+                </div>
+                <div class="dash-card">
+                  <div class="dash-card-header">
+                    <span>This Week</span>
+                    <a href="#" class="dash-card-link">Schedule →</a>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="schedule-day">Mon</span>
+                    <span class="schedule-task">Electrician — 2nd fix wiring</span>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="schedule-day">Wed</span>
+                    <span class="schedule-task">Wallpaper install — Drawing Room</span>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="schedule-day">Thu</span>
+                    <span class="schedule-task">Client site visit — 2pm</span>
+                  </div>
+                  <div class="schedule-row">
+                    <span class="schedule-day">Fri</span>
+                    <span class="schedule-task">Curtain fitting — Master Bedroom</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="pain-points">
+    <div class="container">
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-icon">📊</div>
+          <h3>Spreadsheet chaos</h3>
+          <p>Tracking markups, trade prices, and client costs across 6 different Excel sheets per project</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🧾</div>
+          <h3>Double invoicing nightmare</h3>
+          <p>Manually creating two versions of every invoice — one for the client, one for the supplier</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">📱</div>
+          <h3>Tool fatigue</h3>
+          <p>Programa for specs, EstiPC for costs, Monday.com for schedules, Canva for mood boards, Xero for accounts</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🇬🇧</div>
+          <h3>Nothing built for UK</h3>
+          <p>Every tool is US-first. No FreeAgent integration, no proper VAT handling, no UK supplier database</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Features</span>
+        <h2 class="section-title">Everything your studio needs.<br><span class="gradient-text">Nothing it doesn't.</span></h2>
+        <p class="section-subtitle">Nine integrated modules that replace your entire tool stack</p>
+      </div>
+
+      <!-- Feature Tabs -->
+      <div class="feature-tabs">
+        <button class="feature-tab active" data-tab="procurement">Procurement</button>
+        <button class="feature-tab" data-tab="scheduling">Scheduling</button>
+        <button class="feature-tab" data-tab="invoicing">Invoicing</button>
+        <button class="feature-tab" data-tab="suppliers">Suppliers</button>
+        <button class="feature-tab" data-tab="moodboards">Mood Boards</button>
+        <button class="feature-tab" data-tab="floorplans">Floor Plans</button>
+        <button class="feature-tab" data-tab="clients">Client Portal</button>
+        <button class="feature-tab" data-tab="ai">AI Assistant</button>
+        <button class="feature-tab" data-tab="accounting">Accounting</button>
+      </div>
+
+      <!-- Feature Panels -->
+      <div class="feature-panels">
+        <!-- Procurement -->
+        <div class="feature-panel active" data-panel="procurement">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>Procurement & Order Tracking</h3>
+              <p class="feature-desc">Track every item from spec sheet to client delivery. Know exactly what's ordered, what's in transit, and what's been received — with automatic markup calculations.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Full order lifecycle</strong> — Spec → Quote → Order → Shipped → Delivered → Installed</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Automatic markup tracking</strong> — Set per-item or per-supplier markup percentages, see real margins in real-time</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Web clipper</strong> — Save products from any website with one click, auto-import images and prices</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Purchase order generation</strong> — Auto-generate POs grouped by supplier, send directly via email</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-procurement">
+                <div class="mock-table-header">
+                  <span>Item</span><span>Supplier</span><span>Trade £</span><span>Client £</span><span>Margin</span><span>Status</span>
+                </div>
+                <div class="mock-table-row">
+                  <span>Velvet Sofa</span><span>Sofa Workshop</span><span>£1,800</span><span>£2,520</span><span class="margin-good">40%</span><span class="status-tag delivered">Delivered</span>
+                </div>
+                <div class="mock-table-row">
+                  <span>Silk Curtains x4</span><span>Designer's Guild</span><span>£960</span><span>£1,248</span><span class="margin-good">30%</span><span class="status-tag shipped">In Transit</span>
+                </div>
+                <div class="mock-table-row">
+                  <span>Pendant Light</span><span>Tom Dixon</span><span>£450</span><span>£585</span><span class="margin-good">30%</span><span class="status-tag pending">Ordered</span>
+                </div>
+                <div class="mock-table-row">
+                  <span>Marble Side Table</span><span>West Elm Trade</span><span>£320</span><span>£448</span><span class="margin-good">40%</span><span class="status-tag pending">Spec'd</span>
+                </div>
+                <div class="mock-summary">
+                  <span>Total Trade: <strong>£3,530</strong></span>
+                  <span>Total Client: <strong>£4,801</strong></span>
+                  <span>Gross Margin: <strong class="margin-good">£1,271 (36%)</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scheduling -->
+        <div class="feature-panel" data-panel="scheduling">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>Construction & Project Scheduling</h3>
+              <p class="feature-desc">Visual timeline management built for interior design projects — not generic Gantt charts. Coordinate contractors, track dependencies, and keep clients informed.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Phase-based timeline</strong> — Design → Procurement → Construction → Installation → Snagging</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Contractor coordination</strong> — Assign trades, share schedules, track availability</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Delivery dependencies</strong> — Auto-link procurement items to installation tasks</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Client-facing timeline</strong> — Share a clean, branded version with clients (no cost details)</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-schedule">
+                <div class="schedule-header-row">
+                  <span class="schedule-phase">Phase</span>
+                  <span class="schedule-months">Mar</span>
+                  <span class="schedule-months">Apr</span>
+                  <span class="schedule-months">May</span>
+                  <span class="schedule-months">Jun</span>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">Demolition</span>
+                  <div class="gantt-bar" style="width: 20%; margin-left: 5%; background: #ef4444;"></div>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">1st Fix Electric</span>
+                  <div class="gantt-bar" style="width: 15%; margin-left: 20%; background: #f59e0b;"></div>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">Plastering</span>
+                  <div class="gantt-bar" style="width: 15%; margin-left: 30%; background: #f59e0b;"></div>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">Painting</span>
+                  <div class="gantt-bar" style="width: 20%; margin-left: 40%; background: #6366f1;"></div>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">Wallpaper</span>
+                  <div class="gantt-bar" style="width: 10%; margin-left: 55%; background: #6366f1;"></div>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">Furniture Install</span>
+                  <div class="gantt-bar" style="width: 15%; margin-left: 65%; background: #10b981;"></div>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">Curtain Fitting</span>
+                  <div class="gantt-bar" style="width: 8%; margin-left: 75%; background: #10b981;"></div>
+                </div>
+                <div class="gantt-row">
+                  <span class="gantt-label">Snagging</span>
+                  <div class="gantt-bar" style="width: 10%; margin-left: 82%; background: #a855f7;"></div>
+                </div>
+                <div class="gantt-today" style="left: 42%;"><span>Today</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Invoicing -->
+        <div class="feature-panel" data-panel="invoicing">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>Dual Invoicing & Financial Management</h3>
+              <p class="feature-desc">The only platform that truly separates client-facing finances from trade-side costs. Generate both versions from one data source — no manual duplication.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Client invoices</strong> — Beautiful, branded invoices showing client prices only (markups hidden)</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Trade invoices</strong> — Internal view with trade costs, margins, and supplier payment tracking</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>VAT-ready</strong> — Automatic VAT calculations, CIS deductions, reverse charge handling</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Payment tracking</strong> — See who's paid, who's overdue, and send automated reminders</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-invoices">
+                <div class="mock-invoice client">
+                  <div class="invoice-header">
+                    <span class="invoice-type">Client Invoice</span>
+                    <span class="invoice-no">#INV-2026-047</span>
+                  </div>
+                  <div class="invoice-line"><span>Velvet Sofa</span><span>£2,520</span></div>
+                  <div class="invoice-line"><span>Silk Curtains x4</span><span>£1,248</span></div>
+                  <div class="invoice-line"><span>Design Fee — Phase 2</span><span>£3,500</span></div>
+                  <div class="invoice-total"><span>Total (inc VAT)</span><span>£8,721.60</span></div>
+                  <div class="invoice-footer">Beautifully branded · Markup hidden</div>
+                </div>
+                <div class="mock-invoice trade">
+                  <div class="invoice-header">
+                    <span class="invoice-type">Trade View</span>
+                    <span class="invoice-no">Internal Only</span>
+                  </div>
+                  <div class="invoice-line"><span>Velvet Sofa</span><span>£1,800 → £2,520 <em class="margin-tag">+40%</em></span></div>
+                  <div class="invoice-line"><span>Silk Curtains x4</span><span>£960 → £1,248 <em class="margin-tag">+30%</em></span></div>
+                  <div class="invoice-line"><span>Design Fee</span><span>£3,500 <em class="margin-tag">100%</em></span></div>
+                  <div class="invoice-total"><span>Gross Margin</span><span class="margin-good">£4,508 (52%)</span></div>
+                  <div class="invoice-footer">Trade costs · Margin analysis · Supplier payments</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Suppliers -->
+        <div class="feature-panel" data-panel="suppliers">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>UK Supplier Database</h3>
+              <p class="feature-desc">The first interior design platform with a preloaded database of UK trade suppliers. Search, compare, and order directly — no more hunting through bookmarks and email threads.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>2,000+ UK suppliers</strong> — Fabric houses, furniture makers, lighting, tiles, paint, wallpaper, hardware</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Trade account management</strong> — Store your trade account numbers, discount tiers, and contacts</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Quick reorder</strong> — One-click reorder from previous projects, with price history tracking</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Community ratings</strong> — See reviews from other UK designers on delivery times and quality</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-suppliers">
+                <div class="supplier-search">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#94a3b8" stroke-width="1.5"/><path d="M11 11l3 3" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span>Search suppliers: "velvet fabric"</span>
+                </div>
+                <div class="supplier-card">
+                  <div class="supplier-name">Designer's Guild<span class="supplier-tag">Trade Account</span></div>
+                  <div class="supplier-meta">Fabric & Wallpaper · London · Lead time: 5-7 days</div>
+                  <div class="supplier-rating">★★★★★ <span>4.8 (124 reviews)</span></div>
+                </div>
+                <div class="supplier-card">
+                  <div class="supplier-name">GP & J Baker<span class="supplier-tag new">New</span></div>
+                  <div class="supplier-meta">Fabric & Trimmings · Chelsea · Lead time: 7-10 days</div>
+                  <div class="supplier-rating">★★★★☆ <span>4.5 (89 reviews)</span></div>
+                </div>
+                <div class="supplier-card">
+                  <div class="supplier-name">Zoffany</div>
+                  <div class="supplier-meta">Fabric, Wallpaper & Paint · London · Lead time: 5-14 days</div>
+                  <div class="supplier-rating">★★★★★ <span>4.7 (201 reviews)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mood Boards -->
+        <div class="feature-panel" data-panel="moodboards">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>Mood Board & Visual Presentations</h3>
+              <p class="feature-desc">Create stunning mood boards and client presentations without leaving the platform. Drag products directly from your spec sheet — prices and suppliers link automatically.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Drag-and-drop builder</strong> — Freeform canvas with auto-layout options</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Connected to procurement</strong> — Items on mood boards auto-link to specs and orders</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Client presentations</strong> — One-click export to PDF or share via client portal</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Background remover</strong> — AI-powered cutouts for product images</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-moodboard">
+                <div class="moodboard-canvas">
+                  <div class="mb-item" style="top:5%;left:5%;width:45%;height:50%;background:linear-gradient(135deg,#d4a574,#c4956a);">
+                    <span class="mb-label">Velvet Sofa — £2,520</span>
+                  </div>
+                  <div class="mb-item" style="top:5%;left:53%;width:22%;height:25%;background:linear-gradient(135deg,#8b7355,#6b5945);">
+                    <span class="mb-label">Pendant</span>
+                  </div>
+                  <div class="mb-item" style="top:5%;left:78%;width:18%;height:25%;background:linear-gradient(135deg,#c9b8a8,#b5a498);">
+                    <span class="mb-label">Paint</span>
+                  </div>
+                  <div class="mb-item" style="top:33%;left:53%;width:43%;height:22%;background:linear-gradient(135deg,#7c6f64,#5d524a);">
+                    <span class="mb-label">Curtain Fabric — Designer's Guild</span>
+                  </div>
+                  <div class="mb-item" style="top:58%;left:5%;width:30%;height:38%;background:linear-gradient(135deg,#e8ddd3,#d5c8bc);">
+                    <span class="mb-label">Marble Table</span>
+                  </div>
+                  <div class="mb-item" style="top:58%;left:38%;width:25%;height:38%;background:linear-gradient(135deg,#9b8b7a,#8a7a69);">
+                    <span class="mb-label">Wallpaper</span>
+                  </div>
+                  <div class="mb-item" style="top:58%;left:66%;width:30%;height:38%;background:linear-gradient(135deg,#b8a898,#a09080);">
+                    <span class="mb-label">Rug — £1,850</span>
+                  </div>
+                </div>
+                <div class="moodboard-toolbar">
+                  <span>Drawing Room — Kensington Townhouse</span>
+                  <div class="mb-actions">
+                    <span class="mb-action">Share</span>
+                    <span class="mb-action">Export PDF</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floor Plans -->
+        <div class="feature-panel" data-panel="floorplans">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>Floor Plans & Space Planning</h3>
+              <p class="feature-desc">Create basic floor plans and furniture layouts without expensive CAD software. Perfect for initial concepts and client approvals — not meant to replace AutoCAD for construction drawings.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>2D floor plan editor</strong> — Draw walls, doors, windows with snap-to-grid precision</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Furniture library</strong> — Drag scaled furniture pieces onto your plans</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Room measurements</strong> — Auto-calculate room dimensions and square footage</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Client shareable</strong> — Export as PDF or share interactive version via client portal</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-floorplan">
+                <svg viewBox="0 0 400 300" class="floorplan-svg">
+                  <!-- Walls -->
+                  <rect x="20" y="20" width="360" height="260" fill="none" stroke="#1e293b" stroke-width="4"/>
+                  <line x1="200" y1="20" x2="200" y2="180" stroke="#1e293b" stroke-width="3"/>
+                  <line x1="20" y1="180" x2="280" y2="180" stroke="#1e293b" stroke-width="3"/>
+                  <!-- Door arcs -->
+                  <path d="M200 160 Q220 160 220 180" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4"/>
+                  <path d="M160 180 Q160 200 180 200" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4"/>
+                  <!-- Windows -->
+                  <line x1="60" y1="20" x2="130" y2="20" stroke="#38bdf8" stroke-width="5"/>
+                  <line x1="250" y1="20" x2="340" y2="20" stroke="#38bdf8" stroke-width="5"/>
+                  <!-- Furniture -->
+                  <rect x="45" y="55" width="80" height="45" rx="6" fill="#6366f1" opacity=".15" stroke="#6366f1" stroke-width="1.5"/>
+                  <text x="85" y="82" text-anchor="middle" fill="#6366f1" font-size="10" font-family="Inter">Sofa</text>
+                  <rect x="55" y="115" width="50" height="35" rx="4" fill="#a855f7" opacity=".12" stroke="#a855f7" stroke-width="1.5"/>
+                  <text x="80" y="137" text-anchor="middle" fill="#a855f7" font-size="9" font-family="Inter">Coffee Table</text>
+                  <rect x="235" y="50" width="110" height="60" rx="4" fill="#10b981" opacity=".12" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="290" y="85" text-anchor="middle" fill="#10b981" font-size="10" font-family="Inter">Dining Table</text>
+                  <rect x="50" y="210" width="70" height="50" rx="4" fill="#f59e0b" opacity=".12" stroke="#f59e0b" stroke-width="1.5"/>
+                  <text x="85" y="240" text-anchor="middle" fill="#f59e0b" font-size="10" font-family="Inter">Desk</text>
+                  <!-- Dimensions -->
+                  <text x="110" y="15" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter">4.2m</text>
+                  <text x="14" y="150" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter" transform="rotate(-90 14 150)">3.8m</text>
+                  <!-- Room labels -->
+                  <text x="85" y="42" text-anchor="middle" fill="#334155" font-size="11" font-weight="600" font-family="Inter">Living Room</text>
+                  <text x="290" y="42" text-anchor="middle" fill="#334155" font-size="11" font-weight="600" font-family="Inter">Dining Room</text>
+                  <text x="100" y="200" text-anchor="middle" fill="#334155" font-size="11" font-weight="600" font-family="Inter">Home Office</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clients -->
+        <div class="feature-panel" data-panel="clients">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>Client Portal & Communication</h3>
+              <p class="feature-desc">Give your clients a branded, professional window into their project. They see what you want them to see — schedules, mood boards, invoices — without the trade details.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Branded portal</strong> — Your logo, your colours, your domain</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Approval workflows</strong> — Clients approve mood boards, specs, and invoices in-app</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Online payments</strong> — Accept payments via Stripe, bank transfer, or standing order</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Messaging & docs</strong> — Centralized communication thread, shared documents, progress photos</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-client-portal">
+                <div class="portal-header">
+                  <span class="portal-logo">Sara Mansoor Interiors</span>
+                  <span class="portal-client">Welcome, Mrs. Richardson</span>
+                </div>
+                <div class="portal-nav">
+                  <span class="portal-tab active">Overview</span>
+                  <span class="portal-tab">Mood Boards</span>
+                  <span class="portal-tab">Schedule</span>
+                  <span class="portal-tab">Invoices</span>
+                  <span class="portal-tab">Messages</span>
+                </div>
+                <div class="portal-content">
+                  <div class="portal-card">
+                    <h4>Project Progress</h4>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 42%"></div></div>
+                    <span class="progress-label">Phase 2 of 4 — Construction</span>
+                  </div>
+                  <div class="portal-card">
+                    <h4>Pending Approvals <span class="badge-count">2</span></h4>
+                    <div class="approval-item">Drawing Room Mood Board <button class="approve-btn">Review</button></div>
+                    <div class="approval-item">Invoice #047 — £8,721.60 <button class="approve-btn">Pay</button></div>
+                  </div>
+                  <div class="portal-card">
+                    <h4>Next Milestone</h4>
+                    <p class="milestone-text">Wallpaper installation — 15 Mar 2026</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI -->
+        <div class="feature-panel" data-panel="ai">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>AI-Powered Design Assistant</h3>
+              <p class="feature-desc">Your intelligent studio assistant that learns your style, predicts project needs, and automates the tedious work — so you can focus on designing.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Smart supplier matching</strong> — AI suggests the best supplier based on your project specs, budget, and past orders</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Auto-spec from mood boards</strong> — Drop a mood board and AI generates an initial spec sheet with suggested products</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Predictive scheduling</strong> — AI estimates timelines based on your historical project data</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Document generation</strong> — Auto-create proposals, contracts, and project briefs from templates</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-ai">
+                <div class="ai-chat">
+                  <div class="ai-msg user">I need velvet fabric for the master bedroom curtains, budget around £60/m, something that matches the Farrow & Ball Hague Blue walls</div>
+                  <div class="ai-msg assistant">
+                    <div class="ai-avatar">AI</div>
+                    <div class="ai-text">
+                      Based on your colour palette and budget, here are my top picks:
+                      <div class="ai-suggestion">
+                        <strong>1. Designer's Guild — Varese Velvet</strong><br>
+                        £58/m · Deep navy · Your trade account gets 15% off → £49.30/m<br>
+                        <em>Previously used in Hampstead Garden project — client loved it</em>
+                      </div>
+                      <div class="ai-suggestion">
+                        <strong>2. Zoffany — Curzon Velvet</strong><br>
+                        £62/m · Midnight teal · Lead time: 7 days<br>
+                        <em>Complements Hague Blue beautifully — rich but not competing</em>
+                      </div>
+                      Shall I add either to your spec sheet and generate a quote?
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accounting -->
+        <div class="feature-panel" data-panel="accounting">
+          <div class="feature-panel-content">
+            <div class="feature-panel-text">
+              <h3>UK Accounting Integrations</h3>
+              <p class="feature-desc">First-class integration with the tools UK businesses actually use. Not just a QuickBooks afterthought — proper, deep integrations with FreeAgent, Xero, and Sage.</p>
+              <ul class="feature-list">
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>FreeAgent</strong> — Auto-sync invoices, expenses, bank reconciliation (first in any design tool!)</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Xero</strong> — Two-way sync with automatic invoice matching and payment tracking</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>VAT & MTD</strong> — Making Tax Digital compliant, automatic VAT returns preparation</div>
+                </li>
+                <li>
+                  <svg class="check" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#6366f1" opacity=".1"/><path d="M6 10l3 3 5-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <div><strong>Sage</strong> — Export-ready reports in Sage-compatible formats</div>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-panel-visual">
+              <div class="mock-accounting">
+                <div class="accounting-integrations">
+                  <div class="integration-card connected">
+                    <div class="integration-logo">FA</div>
+                    <div class="integration-info">
+                      <strong>FreeAgent</strong>
+                      <span class="integration-status connected">Connected</span>
+                    </div>
+                    <span class="integration-sync">Last sync: 2 min ago</span>
+                  </div>
+                  <div class="integration-card connected">
+                    <div class="integration-logo xero">X</div>
+                    <div class="integration-info">
+                      <strong>Xero</strong>
+                      <span class="integration-status connected">Connected</span>
+                    </div>
+                    <span class="integration-sync">Last sync: 5 min ago</span>
+                  </div>
+                  <div class="integration-card">
+                    <div class="integration-logo sage">S</div>
+                    <div class="integration-info">
+                      <strong>Sage</strong>
+                      <span class="integration-status">Available</span>
+                    </div>
+                    <span class="integration-sync">Connect →</span>
+                  </div>
+                  <div class="integration-card">
+                    <div class="integration-logo qb">QB</div>
+                    <div class="integration-info">
+                      <strong>QuickBooks</strong>
+                      <span class="integration-status">Available</span>
+                    </div>
+                    <span class="integration-sync">Connect →</span>
+                  </div>
+                </div>
+                <div class="vat-summary">
+                  <h4>VAT Summary — Q1 2026</h4>
+                  <div class="vat-line"><span>Output VAT (sales)</span><span>£14,820</span></div>
+                  <div class="vat-line"><span>Input VAT (purchases)</span><span>£8,640</span></div>
+                  <div class="vat-line total"><span>VAT payable</span><span>£6,180</span></div>
+                  <span class="vat-status">MTD Ready — Submit to HMRC →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">From brief to beautiful,<br><span class="gradient-text">all in one place</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Create your project</h3>
+          <p>Set up a new project with client details, budget, timeline, and room specifications. AI suggests a project template based on scope.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Design & specify</h3>
+          <p>Build mood boards, create floor plans, and spec every item. The web clipper lets you save products from any website with one click.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Procure & schedule</h3>
+          <p>Generate purchase orders, track deliveries, and build your construction timeline. Everything is linked — delayed delivery? Schedule auto-adjusts.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">04</div>
+          <h3>Invoice & get paid</h3>
+          <p>One click generates both client and trade invoices. Automatic VAT, payment reminders, and accounting sync. See your real margins in real-time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="comparison" id="comparison">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Compare</span>
+        <h2 class="section-title">Why designers are <span class="gradient-text">switching</span></h2>
+        <p class="section-subtitle">See how DesignDesk compares to the tools you're currently using</p>
+      </div>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight">DesignDesk</th>
+              <th>EstiPC</th>
+              <th>Houzz Pro</th>
+              <th>Programa</th>
+              <th>Studio Designer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Order tracking (full lifecycle)</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>Construction scheduling</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+            </tr>
+            <tr>
+              <td>Dual invoicing (client + trade)</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>Markup / margin tracking</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>Preloaded UK suppliers</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+            </tr>
+            <tr>
+              <td>Mood board creation</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="x-mark">✗</span></td>
+            </tr>
+            <tr>
+              <td>Floor plan editor</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+            </tr>
+            <tr>
+              <td>Client portal</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>FreeAgent integration</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+            </tr>
+            <tr>
+              <td>VAT / MTD compliant</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="x-mark">✗</span></td>
+            </tr>
+            <tr>
+              <td>AI assistant</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="partial">~</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="x-mark">✗</span></td>
+            </tr>
+            <tr>
+              <td>Cloud / mobile</td>
+              <td class="highlight"><span class="check-mark">✓</span></td>
+              <td><span class="x-mark">✗</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+              <td><span class="check-mark">✓</span></td>
+            </tr>
+            <tr class="price-row">
+              <td>Starting price</td>
+              <td class="highlight"><strong>£29/mo</strong></td>
+              <td>£29/mo</td>
+              <td>£54/mo</td>
+              <td>£40/mo</td>
+              <td>£57/mo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pricing</span>
+        <h2 class="section-title">Simple pricing.<br><span class="gradient-text">No surprises.</span></h2>
+        <p class="section-subtitle">All plans include VAT handling, UK supplier database, and unlimited projects</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Solo</h3>
+            <p class="pricing-desc">For independent designers</p>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">£29</span>
+            <span class="price-period">/month</span>
+          </div>
+          <ul class="pricing-features">
+            <li>1 user seat</li>
+            <li>Unlimited projects</li>
+            <li>Procurement & order tracking</li>
+            <li>Dual invoicing</li>
+            <li>UK supplier database</li>
+            <li>Mood board builder</li>
+            <li>Basic floor plans</li>
+            <li>Client portal (3 clients)</li>
+            <li>FreeAgent or Xero integration</li>
+          </ul>
+          <a href="#waitlist" class="btn btn-outline btn-block">Join Waitlist</a>
+        </div>
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3>Studio</h3>
+            <p class="pricing-desc">For small design teams</p>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">£49</span>
+            <span class="price-period">/user/month</span>
+          </div>
+          <ul class="pricing-features">
+            <li>Up to 5 user seats</li>
+            <li>Everything in Solo, plus:</li>
+            <li>Construction scheduling</li>
+            <li>AI design assistant</li>
+            <li>Unlimited client portal</li>
+            <li>Team collaboration</li>
+            <li>Custom branding</li>
+            <li>Priority support</li>
+            <li>All accounting integrations</li>
+          </ul>
+          <a href="#waitlist" class="btn btn-primary btn-block">Join Waitlist</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Enterprise</h3>
+            <p class="pricing-desc">For large design firms</p>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">Custom</span>
+            <span class="price-period">&nbsp;</span>
+          </div>
+          <ul class="pricing-features">
+            <li>Unlimited user seats</li>
+            <li>Everything in Studio, plus:</li>
+            <li>Custom integrations</li>
+            <li>API access</li>
+            <li>Dedicated account manager</li>
+            <li>On-site training</li>
+            <li>SLA guarantees</li>
+            <li>Custom supplier onboarding</li>
+            <li>White-label client portal</li>
+          </ul>
+          <a href="#demo" class="btn btn-outline btn-block">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials / Social Proof -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What Designers Say</span>
+        <h2 class="section-title">Designed by designers,<br><span class="gradient-text">for designers</span></h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>"I spend 40% of my week on admin — juggling EstiPC for costs, Monday for schedules, Canva for presentations. If one tool did all of this, it would change my life."</p>
+          <div class="testimonial-author">
+            <div class="avatar" style="background: #e0e7ff;">SM</div>
+            <div>
+              <strong>Sara M.</strong>
+              <span>Interior Designer, London</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"Every tool is built for American designers. I need VAT handling, FreeAgent sync, and UK suppliers. Is that really too much to ask?"</p>
+          <div class="testimonial-author">
+            <div class="avatar" style="background: #fce7f3;">KD</div>
+            <div>
+              <strong>Katie D.</strong>
+              <span>Design Studio Owner, Manchester</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p>"My clients ask for project updates and I have to screenshot five different apps. A proper client portal with my branding would be a game-changer."</p>
+          <div class="testimonial-author">
+            <div class="avatar" style="background: #d1fae5;">JR</div>
+            <div>
+              <strong>James R.</strong>
+              <span>Interior Architect, Edinburgh</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist / CTA -->
+  <section class="waitlist" id="waitlist">
+    <div class="container">
+      <div class="waitlist-card">
+        <h2>Join the waitlist</h2>
+        <p>Be among the first UK designers to try DesignDesk. Early access members get <strong>50% off for life</strong> and direct input into the features we build.</p>
+        <form class="waitlist-form" id="waitlist-form">
+          <div class="form-row">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Email address" required>
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Studio name (optional)">
+            <select>
+              <option value="">Team size</option>
+              <option>Just me</option>
+              <option>2-5</option>
+              <option>6-10</option>
+              <option>10+</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Join the Waitlist — It's Free</button>
+          <p class="form-note">No spam, ever. We'll only email you when DesignDesk is ready to try.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section class="demo" id="demo">
+    <div class="container">
+      <div class="demo-content">
+        <h2>Want a personal walkthrough?</h2>
+        <p>Book a 15-minute demo with our team. We'll show you exactly how DesignDesk fits your workflow and answer any questions.</p>
+        <a href="#" class="btn btn-primary btn-lg">Book a Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="url(#logo-grad2)"/>
+                <path d="M8 12h16M8 16h12M8 20h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <defs><linearGradient id="logo-grad2" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+              </svg>
+            </div>
+            <span class="logo-text">DesignDesk</span>
+          </a>
+          <p>The all-in-one studio management platform built specifically for UK interior designers.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#comparison">Compare</a>
+          <a href="#demo">Demo</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">GDPR</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DesignDesk. All rights reserved. Made with care in the UK.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
