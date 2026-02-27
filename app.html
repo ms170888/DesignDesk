@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DesignDesk — Interactive Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app/styles/app.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar"></aside>
+    <div class="app-content">
+      <header class="app-topbar" id="app-topbar"></header>
+      <main class="app-main" id="app-main">
+        <div class="view-loading"><div class="loading-spinner"></div></div>
+      </main>
+    </div>
+  </div>
+
+  <div id="modal-container" class="modal-container"></div>
+  <div id="toast-container" class="toast-container"></div>
+
+  <script type="module" src="app/main.js"></script>
+</body>
+</html>
