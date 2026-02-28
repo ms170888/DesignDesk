@@ -11,6 +11,8 @@ let isPresenting = false;
 let showTemplatePicker = false;
 let editingText = null; // { slideIdx, field }
 let dragFrom = null;
+let _presKeyHandler = null;
+let _presFsHandler = null;
 
 // ── Slide Template Builders ─────────────────────────────────────────────
 
@@ -21,7 +23,7 @@ function buildDefaultSlides(project, items, boards, tasks, state) {
   s.push({
     type: 'cover',
     title: 'Cover',
-    data: { projectName: project.name, client: project.client, address: project.address, date: formatDate(new Date().toISOString()) },
+    data: { projectName: project.name, client: project.client, address: project.address, date: formatDate(new Date().toISOString()), companyName: state.settings?.companyName || 'DesignDesk Studio' },
     bg: '#1e293b'
   });
 
@@ -583,7 +585,7 @@ export function mount(el) {
 }
 
 function mountPresentationMode(el) {
-  const handleKey = (e) => {
+  _presKeyHandler = (e) => {
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
       if (activeSlide < slides.length - 1) {
@@ -600,10 +602,9 @@ function mountPresentationMode(el) {
     }
     if (e.key === 'Escape') {
       exitPresentation(el);
-      document.removeEventListener('keydown', handleKey);
     }
   };
-  document.addEventListener('keydown', handleKey);
+  document.addEventListener('keydown', _presKeyHandler);
 
   // Click to advance
   el.querySelector('#pres-fs-slide')?.addEventListener('click', () => {
@@ -616,7 +617,6 @@ function mountPresentationMode(el) {
   // Exit button
   el.querySelector('#pres-exit-fs')?.addEventListener('click', () => {
     exitPresentation(el);
-    document.removeEventListener('keydown', handleKey);
   });
 
   // Try fullscreen
@@ -626,14 +626,12 @@ function mountPresentationMode(el) {
   }
 
   // Listen for fullscreen exit
-  const onFsChange = () => {
+  _presFsHandler = () => {
     if (!document.fullscreenElement && isPresenting) {
       exitPresentation(el);
-      document.removeEventListener('keydown', handleKey);
-      document.removeEventListener('fullscreenchange', onFsChange);
     }
   };
-  document.addEventListener('fullscreenchange', onFsChange);
+  document.addEventListener('fullscreenchange', _presFsHandler);
 }
 
 function updatePresSlide(el) {
@@ -651,6 +649,8 @@ function updatePresSlide(el) {
 
 function exitPresentation(el) {
   isPresenting = false;
+  if (_presKeyHandler) { document.removeEventListener('keydown', _presKeyHandler); _presKeyHandler = null; }
+  if (_presFsHandler) { document.removeEventListener('fullscreenchange', _presFsHandler); _presFsHandler = null; }
   if (document.fullscreenElement) {
     document.exitFullscreen().catch(() => {});
   }
@@ -747,6 +747,8 @@ function printSlides() {
 }
 
 export function destroy() {
+  if (_presKeyHandler) { document.removeEventListener('keydown', _presKeyHandler); _presKeyHandler = null; }
+  if (_presFsHandler) { document.removeEventListener('fullscreenchange', _presFsHandler); _presFsHandler = null; }
   slides = [];
   activeSlide = 0;
   isPresenting = false;

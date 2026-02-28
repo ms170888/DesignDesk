@@ -379,10 +379,10 @@ export const seedData = {
 
   settings: {
     companyName: 'DesignDesk Studio',
-    companyEmail: 'hello@designdeskstudio.co.uk',
-    companyPhone: '020 7946 0328',
-    companyAddress: '14 Pavilion Road, London SW1X 0HJ',
-    companyVatNumber: 'GB 284 7193 02',
+    email: 'hello@designdeskstudio.co.uk',
+    phone: '020 7946 0328',
+    address: '14 Pavilion Road, London SW1X 0HJ',
+    vatNumber: 'GB 284 7193 02',
     vatRate: 20,
     currency: 'GBP',
     currencySymbol: '£',

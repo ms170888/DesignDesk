@@ -36,7 +36,7 @@ export function renderTopbar() {
 
   return `
     <div class="topbar-left">
-      <button class="topbar-menu-btn" id="sidebar-toggle" type="button" aria-label="Toggle sidebar">${icons.procurement}</button>
+      <button class="topbar-menu-btn" id="sidebar-toggle" type="button" aria-label="Toggle sidebar">${icons.menu}</button>
       <div class="topbar-breadcrumb">
         <a class="topbar-breadcrumb-link topbar-project" href="#/dashboard" data-nav="/dashboard">${project ? sanitizeHtml(project.name) : ''}</a>
         <span class="topbar-sep">/</span>

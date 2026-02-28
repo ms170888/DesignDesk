@@ -18,6 +18,9 @@ const STATUS_COLORS = {
 const PHASE_COLORS = {
   structural: '#ef4444', firstfix: '#f59e0b', finishing: '#3b82f6', install: '#10b981'
 };
+const PHASE_LABELS = {
+  structural: 'Structural', firstfix: 'First Fix', finishing: 'Finishing', install: 'Install'
+};
 const INVOICE_STATUS_COLORS = {
   draft: '#94a3b8', sent: '#3b82f6', paid: '#10b981', overdue: '#ef4444'
 };
@@ -26,7 +29,7 @@ const ACTIVITY_ICONS = {
   'Item delivered': icons.check, 'Invoice paid': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M4 5l4-4 4 4M4 11l4 4 4-4" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   'Order placed': icons.procurement, 'Item shipped': `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="5" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M11 8h3l1.5 2.5V12h-4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="13" r="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="1.5" stroke="currentColor" stroke-width="1.2"/></svg>`,
   'Quote received': icons.edit, 'Status update': icons.edit, 'Task completed': icons.check,
-  'Client approval': icons.check, 'Invoice overdue': icons.trash, 'Project started': icons.plus,
+  'Client approval': icons.check, 'Invoice overdue': icons.warning, 'Project started': icons.plus,
   'New project': icons.plus, 'Quote requested': icons.edit
 };
 
@@ -421,7 +424,7 @@ function setupDonutHover(el) {
       const status = seg.dataset.status;
       const count = seg.dataset.count;
       const pct = seg.dataset.pct;
-      tooltip.innerHTML = `<strong>${capitalize(status)}</strong>: ${count} ${pluralize(parseInt(count), 'item')} (${pct}%)`;
+      tooltip.innerHTML = `<strong>${capitalize(status)}</strong>: ${pluralize(parseInt(count), 'item')} (${pct}%)`;
       tooltip.style.display = 'block';
       tooltip.style.background = STATUS_COLORS[status];
       tooltip.style.color = '#fff';
@@ -501,7 +504,7 @@ function renderThisWeek(upcoming) {
         ${ganttHtml || '<p class="text-muted">No upcoming tasks</p>'}
       </div>
       <div class="phase-legend">
-        ${Object.entries(PHASE_COLORS).map(([p, c]) => `<span class="phase-tag" style="background:${c}20;color:${c};border:1px solid ${c}40;">${capitalize(p)}</span>`).join('')}
+        ${Object.entries(PHASE_COLORS).map(([p, c]) => `<span class="phase-tag" style="background:${c}20;color:${c};border:1px solid ${c}40;">${PHASE_LABELS[p] || capitalize(p)}</span>`).join(' ')}
       </div>
     </div>
   `;

@@ -41,7 +41,7 @@ function persist() {
 
 // ── Validation ──────────────────────────────────────────────────────────
 
-const REQUIRED_ROOT_KEYS = ['projects', 'items', 'tasks', 'invoices', 'suppliers', 'activities', 'notifications', 'settings'];
+const REQUIRED_ROOT_KEYS = ['projects', 'items', 'tasks', 'invoices', 'suppliers', 'activities', 'notifications', 'settings', 'moodboards', 'floorplans'];
 
 function validateState(s) {
   if (!s || typeof s !== 'object') return 'State must be a non-null object';

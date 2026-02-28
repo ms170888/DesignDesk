@@ -34,7 +34,7 @@ function saveMessages(projectId, msgs) {
 
 function getDefaultMessages(projectId) {
   const project = getActiveProject();
-  const clientFirst = project ? project.client.split(' ')[0] : 'there';
+  const clientFirst = project?.client ? project.client.split(' ')[0] : 'there';
   const now = new Date();
   return [
     {

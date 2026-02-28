@@ -1131,8 +1131,9 @@ function mountGantt(el) {
     const task = getState().tasks.find(t => t.id === bar.dataset.id);
     if (!task) return;
     const viewEl = el.querySelector('.view-schedule');
+    if (!viewEl) return;
     const vRect = viewEl.getBoundingClientRect();
-    showContextMenu(task, e.clientX - vRect.left, e.clientY - vRect.top, el.querySelector('.view-schedule'));
+    showContextMenu(task, e.clientX - vRect.left, e.clientY - vRect.top, viewEl);
   });
 
   // ── Click for dependency mode ──────────────────────────────────────
