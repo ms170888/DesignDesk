@@ -6,6 +6,7 @@ import { currentRoute, navigate } from '../router.js';
 import { sanitizeHtml, relativeTime, debounce, filterBySearch, downloadAsJson } from '../core/utils.js';
 import { seedData } from '../seed-data.js';
 import { showToast } from './toast.js';
+import { getCurrentUser, getInitials } from '../core/auth.js';
 
 const routeTitles = {
   '/dashboard': 'Dashboard',
@@ -19,6 +20,9 @@ const routeTitles = {
   '/ai-assistant': 'AI Assistant',
   '/presentations': 'Presentations',
   '/settings': 'Settings',
+  '/help': 'Help & Support',
+  '/onboarding': 'Setup Wizard',
+  '/billing': 'Billing',
 };
 
 let paletteOpen = false;
@@ -33,6 +37,11 @@ export function renderTopbar() {
   const state = getState();
   const unread = state ? state.notifications.filter(n => !n.read).length : 0;
   const badge = unread > 0 ? `<span class="notif-badge">${unread}</span>` : '';
+
+  // Get current user info
+  const user = getCurrentUser();
+  const initials = user ? getInitials(user.name) : 'DD';
+  const userName = user ? sanitizeHtml(user.name) : 'DesignDesk';
 
   return `
     <div class="topbar-left">
@@ -49,6 +58,9 @@ export function renderTopbar() {
         <span class="topbar-search-text">Search...</span>
         <kbd class="topbar-shortcut">Ctrl+K</kbd>
       </button>
+      <button class="topbar-help-btn" id="topbar-help-btn" type="button" aria-label="Help & Support" title="Help (?)">
+        ${icons.help}
+      </button>
       <div class="topbar-notif-wrapper" style="position:relative;">
         <button class="topbar-notif" id="notif-btn" type="button" aria-label="Notifications">
           ${icons.bell}
@@ -57,7 +69,9 @@ export function renderTopbar() {
         <div class="notif-dropdown" id="notif-dropdown" style="display:none;"></div>
       </div>
       <div class="topbar-avatar-wrapper" style="position:relative;">
-        <button class="topbar-avatar" id="avatar-btn" type="button" aria-label="User menu">DD</button>
+        <button class="topbar-avatar" id="avatar-btn" type="button" aria-label="User menu" title="${userName}">
+          ${initials}
+        </button>
         <div class="avatar-dropdown" id="avatar-dropdown" style="display:none;"></div>
       </div>
     </div>
@@ -74,6 +88,12 @@ export function mountTopbar() {
       navigate(link.dataset.nav || '/dashboard');
     });
   });
+
+  // Help button
+  const helpBtn = document.getElementById('topbar-help-btn');
+  if (helpBtn) {
+    helpBtn.addEventListener('click', () => navigate('/help'));
+  }
 
   // Command palette
   setupCommandPalette();
@@ -208,6 +228,11 @@ function buildPaletteItems() {
     resetStore(seedData);
     showToast('Demo data reset', 'success');
     navigate('/dashboard');
+  }});
+  results.push({ type: 'action', label: 'Help & Support', sublabel: 'Navigate', icon: 'help', action: () => navigate('/help') });
+  results.push({ type: 'action', label: 'Billing', sublabel: 'Navigate', icon: 'payment', action: () => navigate('/billing') });
+  results.push({ type: 'action', label: 'Keyboard Shortcuts', sublabel: 'Action', icon: 'grid', action: () => {
+    import('../core/keyboard.js').then(m => m.showShortcutsModal());
   }});
 
   // Items
@@ -401,10 +426,26 @@ function openAvatarDropdown() {
   if (!dropdown) return;
   avatarOpen = true;
 
+  const user = getCurrentUser();
+  const userName = user ? sanitizeHtml(user.name) : 'User';
+  const userEmail = user ? sanitizeHtml(user.email) : '';
+  const userPlan = user ? (user.plan === 'pro' ? 'Pro' : 'Free') : 'Free';
+  const planBadge = user?.plan === 'pro'
+    ? '<span class="avatar-plan-badge avatar-plan-pro">PRO</span>'
+    : '<span class="avatar-plan-badge avatar-plan-free">FREE</span>';
+
   dropdown.innerHTML = `
     <div class="avatar-dropdown-menu">
+      <div class="avatar-menu-user">
+        <div class="avatar-menu-name">${userName} ${planBadge}</div>
+        <div class="avatar-menu-email">${userEmail}</div>
+      </div>
+      <div class="avatar-menu-divider"></div>
       <button class="avatar-menu-item" data-action="profile" type="button">
-        ${icons.suppliers} <span>View Profile</span>
+        ${icons.suppliers} <span>Profile</span>
+      </button>
+      <button class="avatar-menu-item" data-action="billing" type="button">
+        ${icons.payment} <span>Billing</span>
       </button>
       <button class="avatar-menu-item" data-action="export" type="button">
         ${icons.upload} <span>Export Data</span>
@@ -413,15 +454,20 @@ function openAvatarDropdown() {
         ${icons.reset} <span>Reset Demo</span>
       </button>
       <div class="avatar-menu-divider"></div>
-      <a class="avatar-menu-item" href="index.html">
-        ${icons.chevronRight} <span>Back to Site</span>
-      </a>
+      <button class="avatar-menu-item avatar-menu-logout" data-action="logout" type="button">
+        ${icons.back} <span>Sign Out</span>
+      </button>
     </div>
   `;
   dropdown.style.display = 'block';
 
   dropdown.querySelector('[data-action="profile"]')?.addEventListener('click', () => {
     navigate('/settings');
+    closeAvatarDropdown();
+  });
+
+  dropdown.querySelector('[data-action="billing"]')?.addEventListener('click', () => {
+    showToast('Billing page coming soon', 'info', 3000);
     closeAvatarDropdown();
   });
 
@@ -439,6 +485,13 @@ function openAvatarDropdown() {
     showToast('Demo data reset', 'success');
     navigate('/dashboard');
     closeAvatarDropdown();
+  });
+
+  dropdown.querySelector('[data-action="logout"]')?.addEventListener('click', () => {
+    closeAvatarDropdown();
+    if (window.__designdesk_logout) {
+      window.__designdesk_logout();
+    }
   });
 }
 

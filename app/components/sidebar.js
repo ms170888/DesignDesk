@@ -3,6 +3,9 @@
 import { icons } from '../core/icons.js';
 import { getState, getActiveProject, setActiveProject, on, getProjectInvoices } from '../store.js';
 import { navigate, currentRoute } from '../router.js';
+import { getCurrentUser, getInitials } from '../core/auth.js';
+import { getCurrentPlan, getCurrentPlanId } from '../core/payments.js';
+import { hasUnreadChangelog } from '../views/help.js';
 
 const navItems = [
   { route: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
@@ -29,6 +32,25 @@ let collapsed = false;
 let keyboardCleanup = null;
 let storeUnsub = null;
 let backdropEl = null;
+
+function getPlanBadgeHtml() {
+  const plan = getCurrentPlan();
+  if (!plan || plan.id === 'free') return '';
+  return `<span class="plan-badge plan-badge-sm" style="background:${plan.color}20;color:${plan.color};">${plan.name}</span>`;
+}
+
+function getUpgradeButtonHtml() {
+  const planId = getCurrentPlanId();
+  if (planId === 'studio' || planId === 'enterprise') return '';
+  return `
+    <a href="#/pricing" class="sidebar-upgrade-btn" id="sidebar-upgrade-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 2l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Upgrade Plan</span>
+    </a>
+  `;
+}
 
 function getOverdueCount() {
   const invoices = getProjectInvoices();
@@ -92,6 +114,7 @@ export function renderSidebar() {
           <defs><linearGradient id="logo-grad-sb" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
         </svg>
         <span class="sidebar-logo-text">DesignDesk</span>
+        ${getPlanBadgeHtml()}
       </div>
       <button class="sidebar-collapse-btn" id="sidebar-collapse-btn" type="button" aria-label="${collapsed ? 'Expand sidebar' : 'Collapse sidebar'}">
         ${collapseIcon}
@@ -103,6 +126,32 @@ export function renderSidebar() {
     </div>
     <nav class="sidebar-nav" role="menu" aria-label="Main navigation">${navHtml}</nav>
     <div class="sidebar-footer">
+      ${(() => {
+        const user = getCurrentUser();
+        if (user) {
+          const initials = getInitials(user.name);
+          return `
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-avatar">${initials}</div>
+              <div class="sidebar-user-details">
+                <span class="sidebar-user-name">${user.name}</span>
+                <span class="sidebar-user-plan">${user.plan === 'pro' ? 'Pro Plan' : 'Free Plan'}</span>
+              </div>
+            </div>
+          `;
+        }
+        return '';
+      })()}
+      ${getUpgradeButtonHtml()}
+      <a href="#/billing" class="sidebar-nav-item sidebar-billing-link ${current === '/billing' ? 'active' : ''}" data-route="/billing">
+        <span class="sidebar-icon">${icons.payment}</span>
+        <span class="sidebar-label">Billing</span>
+      </a>
+      <a href="#/help" class="sidebar-nav-item sidebar-help-link ${current === '/help' ? 'active' : ''}" data-route="/help">
+        <span class="sidebar-icon">${icons.help}</span>
+        <span class="sidebar-label">Help & Support</span>
+        ${hasUnreadChangelog() ? '<span class="sidebar-badge sidebar-badge-dot"></span>' : ''}
+      </a>
       <a href="index.html" class="sidebar-back">&larr; Back to Site</a>
     </div>
   `;
@@ -151,6 +200,36 @@ export function mountSidebar() {
       } else {
         openMobileSidebar();
       }
+    });
+  }
+
+  // Upgrade button
+  const upgradeBtn = document.getElementById('sidebar-upgrade-btn');
+  if (upgradeBtn) {
+    upgradeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigate('/pricing');
+      closeMobileSidebar();
+    });
+  }
+
+  // Billing link
+  const billingLink = document.querySelector('.sidebar-billing-link');
+  if (billingLink) {
+    billingLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigate('/billing');
+      closeMobileSidebar();
+    });
+  }
+
+  // Help link
+  const helpLink = document.querySelector('.sidebar-help-link');
+  if (helpLink) {
+    helpLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigate('/help');
+      closeMobileSidebar();
     });
   }
 

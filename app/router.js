@@ -1,4 +1,6 @@
-// Hash-based SPA router with transitions, guards, params, and 404
+// Hash-based SPA router with transitions, guards, params, auth, and 404
+
+import { isAuthenticated } from './core/auth.js';
 
 const routes = new Map();
 let currentView = null;
@@ -6,6 +8,9 @@ let currentPath = '';
 let mainEl = null;
 let beforeEachGuard = null;
 let isTransitioning = false;
+
+// Public routes that don't require authentication
+const PUBLIC_ROUTES = new Set(['/login', '/signup', '/forgot-password']);
 
 // ── Route registration ──────────────────────────────────────────────────
 
@@ -46,6 +51,13 @@ export function getRouteParam() {
 
 export function beforeEach(guardFn) {
   beforeEachGuard = guardFn;
+}
+
+// ── Auth guard ──────────────────────────────────────────────────────────
+
+function isPublicRoute(path) {
+  const base = '/' + path.split('/').filter(Boolean)[0];
+  return PUBLIC_ROUTES.has(base);
 }
 
 // ── 404 view ────────────────────────────────────────────────────────────
@@ -122,6 +134,29 @@ async function handleRoute() {
 
   const params = currentRouteParams();
   const path = params.raw;
+
+  // ── Auth guard: redirect unauthenticated users to login ──
+  if (!isPublicRoute(path) && !isAuthenticated()) {
+    // Save the intended destination
+    if (path && path !== '/login' && path !== '/signup' && path !== '/forgot-password') {
+      sessionStorage.setItem('designdesk_return_url', path);
+    }
+    history.replaceState(null, '', '#/login');
+    // Route to login
+    const loginResolved = resolveRoute('/login');
+    if (loginResolved) {
+      await renderView(loginResolved, { base: '/login', id: null, segments: ['login'], raw: '/login' }, '/login');
+    }
+    return;
+  }
+
+  // ── Auth redirect: if authenticated and on a public route, go to dashboard ──
+  if (isPublicRoute(path) && isAuthenticated()) {
+    history.replaceState(null, '', '#/dashboard');
+    handleRoute();
+    return;
+  }
+
   const resolved = resolveRoute(params.base) || resolveRoute(path);
 
   // Guard check
@@ -140,6 +175,28 @@ async function handleRoute() {
     }
   }
 
+  if (!resolved) {
+    // 404
+    isTransitioning = true;
+    if (mainEl.children.length > 0 && currentPath !== '') {
+      await fadeOut(mainEl);
+    }
+    if (currentView && currentView.destroy) {
+      try { currentView.destroy(); } catch (e) { console.error('[router] View cleanup error:', e); }
+    }
+    mainEl.innerHTML = render404(path);
+    fadeIn(mainEl);
+    currentView = null;
+    currentPath = path;
+    isTransitioning = false;
+    updateActiveNav(params.base);
+    return;
+  }
+
+  await renderView(resolved, params, path);
+}
+
+async function renderView(resolved, params, path) {
   isTransitioning = true;
   const startTime = performance.now();
 
@@ -151,17 +208,6 @@ async function handleRoute() {
   // Cleanup previous view
   if (currentView && currentView.destroy) {
     try { currentView.destroy(); } catch (e) { console.error('[router] View cleanup error:', e); }
-  }
-
-  // 404
-  if (!resolved) {
-    mainEl.innerHTML = render404(path);
-    fadeIn(mainEl);
-    currentView = null;
-    currentPath = path;
-    isTransitioning = false;
-    updateActiveNav(params.base);
-    return;
   }
 
   // Show loading briefly for perceived responsiveness
@@ -221,7 +267,7 @@ export function initRouter(containerEl) {
 
   // Initial route
   if (!window.location.hash) {
-    window.location.hash = '/dashboard';
+    window.location.hash = isAuthenticated() ? '/dashboard' : '/login';
   } else {
     handleRoute();
   }
