@@ -1051,9 +1051,13 @@ function showItemForm(existing = null) {
 }
 
 function handleImageFile(file, container) {
+  // Validate file type before reading
+  if (!file.type.startsWith('image/')) return;
   const reader = new FileReader();
   reader.onload = (e) => {
     const url = e.target.result;
+    // Only allow data: image URIs to prevent javascript: injection
+    if (!url || !(/^data:image\//.test(url))) return;
     container.innerHTML = `<img src="${url}" class="image-preview" id="image-preview" /><input type="file" name="image" id="image-file-input" accept="image/*" style="display:none;" />`;
     container.dataset.imageUrl = url;
   };

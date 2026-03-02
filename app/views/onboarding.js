@@ -139,8 +139,10 @@ function renderStepContent(step) {
 }
 
 function renderWelcome() {
-  const logoPreview = wizardData.logoDataUrl
-    ? `<img src="${wizardData.logoDataUrl}" class="onboarding-logo-preview" alt="Logo preview" />`
+  // Only allow data: image URIs to prevent javascript: injection
+  const safeLogoUrl = wizardData.logoDataUrl && /^data:image\/(png|jpeg|gif|svg\+xml|webp);base64,/.test(wizardData.logoDataUrl) ? wizardData.logoDataUrl : null;
+  const logoPreview = safeLogoUrl
+    ? `<img src="${safeLogoUrl}" class="onboarding-logo-preview" alt="Logo preview" />`
     : `<div class="onboarding-logo-placeholder">
         ${icons.image}
         <span>Upload your logo</span>

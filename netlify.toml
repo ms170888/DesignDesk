@@ -1,0 +1,45 @@
+# Netlify configuration for DesignDesk
+
+[build]
+  publish = "."
+  # No build command needed — static site
+
+# Security headers for all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(self)"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/app/styles/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/app/core/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/app/views/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# SPA fallback — serve app.html for app routes
+[[redirects]]
+  from = "/app/*"
+  to = "/app.html"
+  status = 200
+
+# Redirect www to non-www (when custom domain is set)
+[[redirects]]
+  from = "https://www.designdesk.app/*"
+  to = "https://designdesk.app/:splat"
+  status = 301
+  force = true

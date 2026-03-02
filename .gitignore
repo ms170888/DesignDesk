@@ -1,0 +1,36 @@
+# Environment and secrets
+.env
+.env.*
+.env.local
+.env.production
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build output
+dist/
+build/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Credentials / keys
+*.pem
+*.key
+credentials.json
+secrets.json

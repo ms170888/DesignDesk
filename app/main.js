@@ -32,9 +32,9 @@ import * as checkoutCancel from './views/checkout-cancel.js';
 import * as onboarding from './views/onboarding.js';
 import * as help from './views/help.js';
 
-// Expose modal/store for topbar notifications and other components
+// Expose limited modal API for topbar notifications (read-only store exposure removed)
 window.__designdesk_modal = { showModal, closeModal };
-window.__designdesk_store = storeModule;
+// Note: store is imported directly by modules that need it — no global exposure
 
 // Expose logout handler globally for topbar/sidebar
 window.__designdesk_logout = () => {

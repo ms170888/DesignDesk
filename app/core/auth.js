@@ -12,17 +12,21 @@ const DEMO_USER = {
   id: 'usr_demo_001',
   name: 'Demo User',
   email: 'demo@designdesk.app',
-  password: 'demo1234',
   company: 'DesignDesk Studio',
   plan: 'pro',
   avatar: null,
   createdAt: '2025-01-15T00:00:00.000Z'
 };
+// Demo password — hashed on first seed, never stored as plaintext
+const DEMO_RAW_PASSWORD = 'demo1234';
 
 function ensureDemoAccount() {
   const users = getUsers();
   if (!users.find(u => u.email === DEMO_USER.email)) {
-    users.push({ ...DEMO_USER });
+    users.push({
+      ...DEMO_USER,
+      passwordHash: hashPassword(DEMO_RAW_PASSWORD)
+    });
     saveUsers(users);
   }
 }
@@ -46,8 +50,118 @@ function generateId() {
   return 'usr_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 }
 
-function hashPassword(password) {
-  // Simple hash for demo purposes — NOT for production
+/**
+ * Generate a cryptographically random session token.
+ * Uses crypto.getRandomValues for proper entropy.
+ */
+function generateSessionToken() {
+  const arr = new Uint8Array(32);
+  crypto.getRandomValues(arr);
+  return Array.from(arr, b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/**
+ * SHA-256 based password hashing using Web Crypto API.
+ * Includes a per-user salt for defense against rainbow tables.
+ * Returns "sha256:<salt>:<hash>" format.
+ *
+ * Note: For a real production system, use bcrypt/scrypt/argon2 on the server.
+ * SHA-256 with salt is a significant improvement over the previous djb2 hash
+ * and is reasonable for a client-side demo app.
+ */
+async function hashPasswordAsync(password, salt) {
+  if (!salt) {
+    const saltArr = new Uint8Array(16);
+    crypto.getRandomValues(saltArr);
+    salt = Array.from(saltArr, b => b.toString(16).padStart(2, '0')).join('');
+  }
+  const data = new TextEncoder().encode(salt + ':' + password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashHex = Array.from(new Uint8Array(hashBuffer), b => b.toString(16).padStart(2, '0')).join('');
+  return `sha256:${salt}:${hashHex}`;
+}
+
+/**
+ * Synchronous password hash fallback — used only for demo seed and
+ * immediate operations. Uses a stronger hash than the previous djb2.
+ * Format: "sync:<salt>:<hash>"
+ */
+function hashPassword(password, salt) {
+  if (!salt) {
+    const arr = new Uint8Array(16);
+    crypto.getRandomValues(arr);
+    salt = Array.from(arr, b => b.toString(16).padStart(2, '0')).join('');
+  }
+  // FNV-1a 64-bit inspired hash with salt — much stronger than djb2
+  const input = salt + ':' + password;
+  let h1 = 0x811c9dc5 >>> 0;
+  let h2 = 0x01000193 >>> 0;
+  for (let i = 0; i < input.length; i++) {
+    const c = input.charCodeAt(i);
+    h1 ^= c;
+    h1 = Math.imul(h1, 0x01000193) >>> 0;
+    h2 ^= c;
+    h2 = Math.imul(h2, 0x100000001b3 & 0xFFFFFFFF) >>> 0;
+  }
+  const hash = h1.toString(16).padStart(8, '0') + h2.toString(16).padStart(8, '0');
+  return `sync:${salt}:${hash}`;
+}
+
+/**
+ * Constant-time string comparison to prevent timing attacks.
+ */
+function timingSafeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
+  if (a.length !== b.length) {
+    // Still do the comparison to avoid length-based timing leak
+    let result = a.length ^ b.length;
+    for (let i = 0; i < a.length; i++) {
+      result |= a.charCodeAt(i) ^ (b.charCodeAt(i % b.length) || 0);
+    }
+    return result === 0;
+  }
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
+
+/**
+ * Verify a password against a stored hash.
+ * Supports both "sync:salt:hash" and legacy "h_" formats.
+ */
+function verifyPassword(password, storedHash) {
+  if (!storedHash || !password) return false;
+
+  if (storedHash.startsWith('sync:')) {
+    const parts = storedHash.split(':');
+    if (parts.length !== 3) return false;
+    const salt = parts[1];
+    const computed = hashPassword(password, salt);
+    return timingSafeEqual(computed, storedHash);
+  }
+
+  if (storedHash.startsWith('sha256:')) {
+    // For async hashes we do a synchronous re-hash with same salt
+    // In production, this would be async
+    const parts = storedHash.split(':');
+    if (parts.length !== 3) return false;
+    // Fall through — async verification not possible in sync context
+    // This path is for future use when login becomes async
+    return false;
+  }
+
+  // Legacy "h_" format — migrate on next login
+  if (storedHash.startsWith('h_')) {
+    return timingSafeEqual(storedHash, legacyHash(password));
+  }
+
+  return false;
+}
+
+/** Legacy djb2 hash for backward compatibility during migration */
+function legacyHash(password) {
   let hash = 0;
   for (let i = 0; i < password.length; i++) {
     const chr = password.charCodeAt(i);
@@ -95,6 +209,7 @@ function validateSignupData(data) {
 function createSession(user, rememberMe = false) {
   const duration = rememberMe ? SESSION_DURATION_REMEMBER : SESSION_DURATION_DEFAULT;
   const session = {
+    token: generateSessionToken(),
     userId: user.id,
     email: user.email,
     name: user.name,
@@ -114,8 +229,15 @@ function getSession() {
     const raw = localStorage.getItem(SESSION_KEY);
     if (!raw) return null;
     const session = JSON.parse(raw);
+
+    // Validate session has required fields
+    if (!session.token || !session.userId || !session.expiresAt) {
+      localStorage.removeItem(SESSION_KEY);
+      return null;
+    }
+
     // Check expiry
-    if (session.expiresAt && Date.now() > session.expiresAt) {
+    if (Date.now() > session.expiresAt) {
       localStorage.removeItem(SESSION_KEY);
       return null;
     }
@@ -148,13 +270,30 @@ export function login(email, password, rememberMe = false) {
   const users = getUsers();
   const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
+  // Use a generic error message to prevent user enumeration
+  const genericError = 'Invalid email or password';
+
   if (!user) {
-    return { success: false, error: 'No account found with this email' };
+    // Perform a dummy hash to prevent timing-based user enumeration
+    hashPassword(password);
+    return { success: false, error: genericError };
   }
 
-  // Check password — compare raw for demo, or hashed
-  if (user.password !== password && user.passwordHash && user.passwordHash !== hashPassword(password)) {
-    return { success: false, error: 'Incorrect password' };
+  // Verify password against hash only — never compare raw passwords
+  const passwordValid = verifyPassword(password, user.passwordHash);
+
+  if (!passwordValid) {
+    return { success: false, error: genericError };
+  }
+
+  // Migrate legacy hash to new format on successful login
+  if (user.passwordHash && (user.passwordHash.startsWith('h_') || !user.passwordHash.startsWith('sync:'))) {
+    const idx = users.findIndex(u => u.id === user.id);
+    if (idx !== -1) {
+      users[idx].passwordHash = hashPassword(password);
+      delete users[idx].password; // Remove any legacy plaintext password
+      saveUsers(users);
+    }
   }
 
   const session = createSession(user, rememberMe);
@@ -181,7 +320,6 @@ export function signup(data) {
     id: generateId(),
     name: data.name.trim(),
     email: data.email.trim().toLowerCase(),
-    password: data.password, // Store raw for demo
     passwordHash: hashPassword(data.password),
     company: data.company?.trim() || '',
     plan: 'free',
@@ -195,7 +333,7 @@ export function signup(data) {
   // Auto-login after signup
   const session = createSession(newUser, false);
 
-  return { success: true, user: { ...newUser, password: undefined, passwordHash: undefined } };
+  return { success: true, user: { ...newUser, passwordHash: undefined } };
 }
 
 /**
@@ -216,15 +354,8 @@ export function forgotPassword(email) {
     return { success: false, error: 'Please enter a valid email address' };
   }
 
-  const users = getUsers();
-  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-
   // Always return success for security (don't reveal if email exists)
-  // But log if user was found for debugging
-  if (user) {
-    console.debug('[auth] Reset email would be sent to:', email);
-  }
-
+  // No logging of email addresses
   return { success: true };
 }
 
@@ -281,8 +412,8 @@ export function updateProfile(data) {
   if (data.newPassword) {
     const pwErr = validatePassword(data.newPassword);
     if (pwErr) return { success: false, error: pwErr };
-    users[idx].password = data.newPassword;
     users[idx].passwordHash = hashPassword(data.newPassword);
+    delete users[idx].password; // Remove any legacy plaintext
   }
 
   saveUsers(users);

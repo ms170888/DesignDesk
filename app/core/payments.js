@@ -1,6 +1,9 @@
 // Payment service — Stripe integration, plan management, feature gating, usage tracking
 
 const STORAGE_KEY = 'designdesk_subscription';
+const VALID_PLAN_IDS = new Set(['free', 'starter', 'studio', 'enterprise']);
+const VALID_BILLING_CYCLES = new Set(['monthly', 'annual']);
+const VALID_STATUSES = new Set(['active', 'cancelled', 'past_due']);
 
 // ── Stripe Configuration ────────────────────────────────────────────────
 
@@ -286,7 +289,14 @@ export function getSubscription() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
-    return JSON.parse(raw);
+    const sub = JSON.parse(raw);
+    // Validate subscription integrity — reject tampered data
+    if (!sub || typeof sub !== 'object') return null;
+    if (!VALID_PLAN_IDS.has(sub.planId)) return null;
+    if (!VALID_STATUSES.has(sub.status)) return null;
+    if (sub.billingCycle && !VALID_BILLING_CYCLES.has(sub.billingCycle)) return null;
+    if (typeof sub.price !== 'number' || sub.price < 0 || sub.price > 10000) return null;
+    return sub;
   } catch {
     return null;
   }

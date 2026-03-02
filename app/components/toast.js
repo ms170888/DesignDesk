@@ -1,5 +1,7 @@
 // Toast notification component — with progress bar, action buttons, stacking, per-type icons
 
+import { sanitizeHtml } from '../core/utils.js';
+
 let containerEl = null;
 const MAX_VISIBLE = 3;
 const activeToasts = [];
@@ -51,7 +53,7 @@ export function showToast(message, type = 'success', duration = 3000, action = n
   toast.innerHTML = `
     <div class="toast-main">
       <span class="toast-icon toast-icon-${type}">${icon}</span>
-      <span class="toast-msg">${message}</span>
+      <span class="toast-msg">${sanitizeHtml(message)}</span>
       ${actionHtml}
       <button class="toast-dismiss" type="button" aria-label="Dismiss">&times;</button>
     </div>

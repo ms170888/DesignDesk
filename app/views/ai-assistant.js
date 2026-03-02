@@ -1,7 +1,7 @@
 // AI Assistant — comprehensive pattern-matched responses from real project data
 
 import { getState, getActiveProject } from '../store.js';
-import { formatCurrency, formatDate, formatDateShort, daysBetween, relativeTime, isOverdue, getWeekRange } from '../core/utils.js';
+import { formatCurrency, formatDate, formatDateShort, daysBetween, relativeTime, isOverdue, getWeekRange, sanitizeHtml } from '../core/utils.js';
 import { icons } from '../core/icons.js';
 import { showToast } from '../components/toast.js';
 
@@ -98,8 +98,9 @@ export function render() {
 }
 
 function formatResponseText(text) {
-  // Convert **bold** to <strong> and newlines to <br>
-  return text
+  // Sanitize first to prevent XSS, then convert **bold** to <strong> and newlines to <br>
+  const safe = sanitizeHtml(text);
+  return safe
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\n/g, '<br>');
 }

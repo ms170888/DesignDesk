@@ -1,5 +1,7 @@
 // Modal component — form validation, loading states, multi-step, focus trap, sizes
 
+import { sanitizeHtml } from '../core/utils.js';
+
 let modalEl = null;
 let focusTrapCleanup = null;
 let currentStepIndex = 0;
@@ -329,7 +331,7 @@ function showValidationErrors(errors) {
   errEl.innerHTML = errors.map(e =>
     `<div class="modal-error-item">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M5 5l4 4M9 5l-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-      ${e}
+      ${sanitizeHtml(e)}
     </div>`
   ).join('');
 }

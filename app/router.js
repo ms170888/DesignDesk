@@ -1,6 +1,7 @@
 // Hash-based SPA router with transitions, guards, params, auth, and 404
 
 import { isAuthenticated } from './core/auth.js';
+import { sanitizeHtml } from './core/utils.js';
 
 const routes = new Map();
 let currentView = null;
@@ -68,7 +69,7 @@ function render404(path) {
       <div style="font-size:4rem;font-weight:700;color:var(--color-primary,#6366f1);margin-bottom:0.5rem;">404</div>
       <h2 style="margin:0 0 0.5rem;color:var(--color-text,#1e293b);">Page not found</h2>
       <p style="color:var(--color-text-muted,#64748b);margin-bottom:1.5rem;">
-        The route <code style="background:var(--color-surface,#f1f5f9);padding:2px 8px;border-radius:4px;">${path}</code> does not exist.
+        The route <code style="background:var(--color-surface,#f1f5f9);padding:2px 8px;border-radius:4px;">${sanitizeHtml(path)}</code> does not exist.
       </p>
       <a href="#/dashboard" style="color:var(--color-primary,#6366f1);font-weight:600;text-decoration:none;">
         &larr; Back to Dashboard
@@ -233,7 +234,7 @@ async function renderView(resolved, params, path) {
     mainEl.innerHTML = `
       <div class="view-error" style="padding:2rem;text-align:center;">
         <h2 style="color:var(--color-error,#ef4444);margin-bottom:0.5rem;">Something went wrong</h2>
-        <p style="color:var(--color-text-muted,#64748b);margin-bottom:1rem;">${e.message}</p>
+        <p style="color:var(--color-text-muted,#64748b);margin-bottom:1rem;">${sanitizeHtml(e.message)}</p>
         <a href="#/dashboard" style="color:var(--color-primary,#6366f1);font-weight:600;text-decoration:none;">
           &larr; Back to Dashboard
         </a>

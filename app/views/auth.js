@@ -5,6 +5,7 @@ import { login, signup, forgotPassword, isAuthenticated } from '../core/auth.js'
 import { navigate } from '../router.js';
 import { showToast } from '../components/toast.js';
 import { icons } from '../core/icons.js';
+import { sanitizeHtml } from '../core/utils.js';
 
 let currentMode = 'login'; // 'login' | 'signup' | 'forgot'
 let isSubmitting = false;
@@ -210,7 +211,7 @@ function renderResetSent(email) {
         </svg>
       </div>
       <h3 class="auth-success-title">Check your email</h3>
-      <p class="auth-success-text">We've sent a password reset link to <strong>${email}</strong>. Please check your inbox and follow the instructions.</p>
+      <p class="auth-success-text">We've sent a password reset link to <strong>${sanitizeHtml(email)}</strong>. Please check your inbox and follow the instructions.</p>
       <p class="auth-success-hint">Didn't receive it? Check your spam folder or <a href="#/forgot-password" class="auth-link" data-auth-mode="forgot">try again</a>.</p>
       <div class="auth-footer-text" style="margin-top:20px;">
         <a href="#/login" class="auth-link auth-back-link" data-auth-mode="login">${authIcons.arrowLeft} Back to sign in</a>
@@ -407,8 +408,12 @@ async function handleLogin(el) {
     // Small delay for toast visibility
     await delay(300);
     // Redirect to saved URL or dashboard
-    const returnUrl = sessionStorage.getItem('designdesk_return_url') || '/dashboard';
+    let returnUrl = sessionStorage.getItem('designdesk_return_url') || '/dashboard';
     sessionStorage.removeItem('designdesk_return_url');
+    // Validate return URL is a safe internal path (starts with /) and not a protocol handler
+    if (!returnUrl || !returnUrl.startsWith('/') || returnUrl.startsWith('//') || returnUrl.includes(':')) {
+      returnUrl = '/dashboard';
+    }
     window.location.hash = returnUrl;
     // Force full page reload to re-init the app shell
     window.location.reload();

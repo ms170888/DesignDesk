@@ -114,16 +114,10 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // For everything else, network first with cache fallback
+  // For everything else, network only — do not cache arbitrary responses
+  // to prevent cache poisoning of dynamic or sensitive content
   event.respondWith(
     fetch(request)
-      .then(response => {
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
-        }
-        return response;
-      })
       .catch(() => caches.match(request))
   );
 });

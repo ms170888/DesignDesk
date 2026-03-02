@@ -4,7 +4,7 @@ import { getState, setState, resetStore, exportData, importData, checkStorageQuo
 import { seedData } from '../seed-data.js';
 import { showToast } from '../components/toast.js';
 import { icons } from '../core/icons.js';
-import { formatCurrency, downloadAsJson, downloadAsCsv } from '../core/utils.js';
+import { formatCurrency, downloadAsJson, downloadAsCsv, sanitizeHtml } from '../core/utils.js';
 
 const LOGO_KEY = 'designdesk_logo';
 let activeSection = 'studio';
@@ -56,7 +56,9 @@ export function render() {
 // ── Studio Information ──────────────────────────────────────────────────
 
 function renderStudio(settings) {
-  const logo = localStorage.getItem(LOGO_KEY) || '';
+  const rawLogo = localStorage.getItem(LOGO_KEY) || '';
+  // Only allow data: URIs for logo to prevent javascript: or other injection
+  const logo = rawLogo && /^data:image\/(png|jpeg|gif|svg\+xml|webp);base64,/.test(rawLogo) ? rawLogo : '';
 
   return `
     <div class="settings-section">
@@ -67,41 +69,41 @@ function renderStudio(settings) {
         <div class="settings-form-grid">
           <div class="form-group">
             <label for="s-company-name">Company Name</label>
-            <input type="text" id="s-company-name" value="${settings.companyName || ''}" placeholder="DesignDesk Studio" />
+            <input type="text" id="s-company-name" value="${sanitizeHtml(settings.companyName || '')}" placeholder="DesignDesk Studio" />
           </div>
           <div class="form-group">
             <label for="s-address">Address</label>
-            <input type="text" id="s-address" value="${settings.address || ''}" placeholder="123 Design Street, London SW1" />
+            <input type="text" id="s-address" value="${sanitizeHtml(settings.address || '')}" placeholder="123 Design Street, London SW1" />
           </div>
           <div class="form-group">
             <label for="s-phone">Phone</label>
-            <input type="tel" id="s-phone" value="${settings.phone || ''}" placeholder="020 7946 0958" />
+            <input type="tel" id="s-phone" value="${sanitizeHtml(settings.phone || '')}" placeholder="020 7946 0958" />
           </div>
           <div class="form-group">
             <label for="s-email">Email</label>
-            <input type="email" id="s-email" value="${settings.email || ''}" placeholder="hello@designdeskstudio.co.uk" />
+            <input type="email" id="s-email" value="${sanitizeHtml(settings.email || '')}" placeholder="hello@designdeskstudio.co.uk" />
           </div>
           <div class="form-group">
             <label for="s-website">Website</label>
-            <input type="text" id="s-website" value="${settings.website || ''}" placeholder="designdeskstudio.co.uk" />
+            <input type="text" id="s-website" value="${sanitizeHtml(settings.website || '')}" placeholder="designdeskstudio.co.uk" />
           </div>
           <div class="form-group">
             <label for="s-company-reg">Company Registration</label>
-            <input type="text" id="s-company-reg" value="${settings.companyReg || ''}" placeholder="12345678" />
+            <input type="text" id="s-company-reg" value="${sanitizeHtml(settings.companyReg || '')}" placeholder="12345678" />
           </div>
           <div class="form-group">
             <label for="s-vat-number">VAT Number</label>
-            <input type="text" id="s-vat-number" value="${settings.vatNumber || ''}" placeholder="GB 123 4567 89" />
+            <input type="text" id="s-vat-number" value="${sanitizeHtml(settings.vatNumber || '')}" placeholder="GB 123 4567 89" />
           </div>
           <div class="form-group">
             <label for="s-payment-terms">Default Payment Terms</label>
-            <input type="text" id="s-payment-terms" value="${settings.paymentTerms || ''}" placeholder="Payment due within 30 days" />
+            <input type="text" id="s-payment-terms" value="${sanitizeHtml(settings.paymentTerms || '')}" placeholder="Payment due within 30 days" />
           </div>
         </div>
 
         <div class="form-group settings-bank-details">
           <label for="s-bank-details">Bank Details (for invoice footers)</label>
-          <textarea id="s-bank-details" rows="3" placeholder="Sort Code: 00-00-00&#10;Account Number: 12345678&#10;Account Name: DesignDesk Studio Ltd">${settings.bankDetails || ''}</textarea>
+          <textarea id="s-bank-details" rows="3" placeholder="Sort Code: 00-00-00&#10;Account Number: 12345678&#10;Account Name: DesignDesk Studio Ltd">${sanitizeHtml(settings.bankDetails || '')}</textarea>
         </div>
 
         <div class="form-group settings-logo-group">

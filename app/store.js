@@ -43,6 +43,9 @@ function persist() {
 
 const REQUIRED_ROOT_KEYS = ['projects', 'items', 'tasks', 'invoices', 'suppliers', 'activities', 'notifications', 'settings', 'moodboards', 'floorplans'];
 
+// Keys that must never be traversed or set via updateState to prevent prototype pollution
+const FORBIDDEN_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
 function validateState(s) {
   if (!s || typeof s !== 'object') return 'State must be a non-null object';
   for (const key of REQUIRED_ROOT_KEYS) {
@@ -54,6 +57,16 @@ function validateState(s) {
   if (!Array.isArray(s.invoices)) return '"invoices" must be an array';
   if (typeof s.settings !== 'object') return '"settings" must be an object';
   return null;
+}
+
+/**
+ * Validate a dot-separated path for safety against prototype pollution.
+ * Returns true if the path is safe to use.
+ */
+function isPathSafe(path) {
+  if (typeof path !== 'string' || !path) return false;
+  const keys = path.split('.');
+  return keys.every(k => !FORBIDDEN_KEYS.has(k));
 }
 
 // ── Public API: State access ────────────────────────────────────────────
@@ -92,6 +105,10 @@ export function setState(newState) {
 }
 
 export function updateState(path, value) {
+  if (!isPathSafe(path)) {
+    console.error('[store] updateState blocked unsafe path:', path);
+    return;
+  }
   const s = getStateRef();
   if (!s) return;
   pushUndo();
@@ -115,6 +132,10 @@ export function batchUpdate(updates) {
   if (!s) { batchDepth--; return; }
   pushUndo();
   for (const { path, value } of updates) {
+    if (!isPathSafe(path)) {
+      console.error('[store] batchUpdate blocked unsafe path:', path);
+      continue;
+    }
     const keys = path.split('.');
     let obj = s;
     for (let i = 0; i < keys.length - 1; i++) {

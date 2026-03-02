@@ -2,7 +2,7 @@
 // No trade prices, no margins, no internal notes visible ANYWHERE
 
 import { getState, getActiveProject, addActivity } from '../store.js';
-import { formatCurrency, formatDate, formatDateShort, daysBetween, generateId, relativeTime } from '../core/utils.js';
+import { formatCurrency, formatDate, formatDateShort, daysBetween, generateId, relativeTime, sanitizeHtml } from '../core/utils.js';
 import { icons } from '../core/icons.js';
 import { showToast } from '../components/toast.js';
 
@@ -492,7 +492,7 @@ function renderInvoiceDetail(inv, items) {
             <tr class="portal-invoice-total-row"><td colspan="2" class="text-right"><strong>Total</strong></td><td class="text-right"><strong>${formatCurrency(total)}</strong></td></tr>
           </tfoot>
         </table>
-        ${inv.notes ? `<p class="portal-invoice-notes"><strong>Notes:</strong> ${inv.notes}</p>` : ''}
+        ${inv.notes ? `<p class="portal-invoice-notes"><strong>Notes:</strong> ${sanitizeHtml(inv.notes)}</p>` : ''}
       </div>
       <div class="portal-invoice-actions">
         <button class="portal-btn portal-btn-outline print-invoice-btn">${icons.printer} Download / Print</button>
@@ -521,8 +521,8 @@ function renderMessages(project) {
                 ${m.from === 'designer' ? 'DD' : clientInitials}
               </div>
               <div class="portal-msg-bubble">
-                <div class="portal-msg-name">${m.name}</div>
-                <p>${m.text}</p>
+                <div class="portal-msg-name">${sanitizeHtml(m.name)}</div>
+                <p>${sanitizeHtml(m.text)}</p>
                 <span class="portal-msg-time">${relativeTime(m.timestamp)}</span>
               </div>
             </div>
