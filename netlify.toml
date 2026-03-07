@@ -31,6 +31,12 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
+# Cache comparison pages (1 day)
+[[headers]]
+  for = "/compare/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
 # SPA fallback — serve app.html for app routes
 [[redirects]]
   from = "/app/*"
@@ -43,3 +49,7 @@
   to = "https://designdesk.app/:splat"
   status = 301
   force = true
+
+# Netlify Forms processing
+[build.processing]
+  skip_processing = false
